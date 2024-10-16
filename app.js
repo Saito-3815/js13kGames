@@ -23,7 +23,7 @@ for (let i = 0; i < games.length; i++) {
 document.getElementById("content").innerHTML = content;
 
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("/sw.js");
+  navigator.serviceWorker.register("/js13kpwa/sw.js");
 }
 
 // クリックイベントが発生すると、ーザーに通知の許可を求める

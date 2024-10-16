@@ -1,6 +1,6 @@
 self.importScripts("data/games.js");
 
-const cacheName = "js13kPWA-v6";
+const cacheName = "js13kPWA-v7";
 const appShellFiles = [
   "/",
   "/index.html",
