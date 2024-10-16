@@ -1,6 +1,6 @@
 self.importScripts("data/games.js");
 
-const cacheName = "js13kPWA-v10";
+const cacheName = "js13kPWA-v11";
 const appShellFiles = [
   "/js13kpwa/",
   "/js13kpwa/index.html",
@@ -38,6 +38,23 @@ self.addEventListener("install", (e) => {
       } catch (error) {
         console.error("Failed to cache:", error);
       }
+    })(),
+  );
+});
+
+self.addEventListener("activate", (e) => {
+  console.log("[Service Worker] Activate");
+  e.waitUntil(
+    (async () => {
+      const keys = await caches.keys();
+      return Promise.all(
+        keys.map((key) => {
+          if (key !== cacheName) {
+            console.log("[Service Worker] Removing old cache:", key);
+            return caches.delete(key);
+          }
+        }),
+      );
     })(),
   );
 });

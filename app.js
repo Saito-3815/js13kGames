@@ -33,6 +33,8 @@ button.addEventListener("click", () => {
   Notification.requestPermission().then((result) => {
     if (result === "granted") {
       randomNotification();
+    } else {
+      console.log("Notification permission denied");
     }
   });
 });
@@ -42,7 +44,7 @@ function randomNotification() {
   const randomItem = Math.floor(Math.random() * games.length);
   const notifTitle = games[randomItem].name;
   const notifBody = `Created by ${games[randomItem].author}.`;
-  const notifImg = `data/img/${games[randomItem].slug}.jpg`;
+  const notifImg = `/js13kpwa/data/img/${games[randomItem].slug}.jpg`;
   const options = {
     body: notifBody,
     icon: notifImg,
