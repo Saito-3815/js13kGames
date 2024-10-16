@@ -1,29 +1,29 @@
 self.importScripts("data/games.js");
 
-const cacheName = "js13kPWA-v8";
+const cacheName = "js13kPWA-v9";
 const appShellFiles = [
-  "/",
-  "/index.html",
-  "/app.js",
-  "/style.css",
-  "/fonts/graduate.eot",
-  "/fonts/graduate.ttf",
-  "/fonts/graduate.woff",
-  "/favicon.ico",
-  "/img/js13kgames.png",
-  "/img/bg.png",
-  "/icons/icon-32.png",
-  "/icons/icon-64.png",
-  "/icons/icon-96.png",
-  "/icons/icon-128.png",
-  "/icons/icon-168.png",
-  "/icons/icon-192.png",
-  "/icons/icon-256.png",
-  "/icons/icon-512.png",
+  "/js13kpwa/",
+  "/js13kpwa/index.html",
+  "/js13kpwa/app.js",
+  "/js13kpwa/style.css",
+  "/js13kpwa/fonts/graduate.eot",
+  "/js13kpwa/fonts/graduate.ttf",
+  "/js13kpwa/fonts/graduate.woff",
+  "/js13kpwa/favicon.ico",
+  "/js13kpwa/img/js13kgames.png",
+  "/js13kpwa/img/bg.png",
+  "/js13kpwa/icons/icon-32.png",
+  "/js13kpwa/icons/icon-64.png",
+  "/js13kpwa/icons/icon-96.png",
+  "/js13kpwa/icons/icon-128.png",
+  "/js13kpwa/icons/icon-168.png",
+  "/js13kpwa/icons/icon-192.png",
+  "/js13kpwa/icons/icon-256.png",
+  "/js13kpwa/icons/icon-512.png",
 ];
 const gamesImages = [];
 for (let i = 0; i < games.length; i++) {
-  gamesImages.push(`data/img/${games[i].slug}.jpg`);
+  gamesImages.push(`/js13kpwa/data/img/${games[i].slug}.jpg`);
 }
 const contentToCache = appShellFiles.concat(gamesImages);
 
@@ -33,7 +33,11 @@ self.addEventListener("install", (e) => {
     (async () => {
       const cache = await caches.open(cacheName);
       console.log("[Service Worker] Caching all: app shell and content");
-      await cache.addAll(contentToCache);
+      try {
+        await cache.addAll(contentToCache);
+      } catch (error) {
+        console.error("Failed to cache:", error);
+      }
     })(),
   );
 });
