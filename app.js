@@ -32,6 +32,7 @@ const button = document.getElementById("notifications");
 button.addEventListener("click", () => {
   Notification.requestPermission().then((result) => {
     if (result === "granted") {
+      console.log("Notification permission granted");
       randomNotification();
     } else {
       console.log("Notification permission denied");
@@ -49,6 +50,7 @@ function randomNotification() {
     body: notifBody,
     icon: notifImg,
   };
+  console.log(`Creating notification: ${notifTitle}, ${notifBody}, ${notifImg}`);
   new Notification(notifTitle, options);
   setTimeout(randomNotification, 30000);
 }
