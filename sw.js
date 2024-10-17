@@ -4,7 +4,7 @@ const basePath = self.location.hostname === '127.0.0.1' || self.location.hostnam
   ? '/' 
   : '/js13kpwa/';
 
-const cacheName = "js13kPWA-v24";
+const cacheName = "js13kPWA-v25";
 const appShellFiles = [
   `${basePath}`,
   `${basePath}index.html`,
