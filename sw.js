@@ -1,10 +1,12 @@
 self.importScripts("data/games.js");
 
-const basePath = self.location.hostname === '127.0.0.1' || self.location.hostname === '192.168.11.2' || self.location.hostname === 'localhost' 
-  ? '/' 
-  : '/js13kpwa/';
+// const basePath = self.location.hostname === '127.0.0.1' || self.location.hostname === '192.168.11.2' || self.location.hostname === 'localhost' 
+//   ? '/' 
+//   : '/js13kpwa/';
 
-const cacheName = "js13kPWA-v31";
+const basePath = "/";
+
+const cacheName = "js13kPWA-v32";
 const appShellFiles = [
   `${basePath}`,
   `${basePath}index.html`,

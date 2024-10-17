@@ -24,9 +24,11 @@ document.getElementById("content").innerHTML = content;
 
 if ("serviceWorker" in navigator) {
   // github pagesデプロイ時はsw.jsのパスを修正
-  const swPath = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' 
-    ? '/sw.js' 
-    : '/js13kpwa/sw.js';
+  // const swPath = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' 
+  //   ? '/sw.js' 
+  //   : '/js13kpwa/sw.js';
+
+  const swPath = '/sw.js';
 
   navigator.serviceWorker.register(swPath).then((registration) => {
     console.log("Service Worker registered with scope:", registration.scope);
@@ -56,9 +58,11 @@ function randomNotification() {
   const notifBody = `Created by ${games[randomItem].author}.`;
 
   // 環境に応じてベースパスを設定
-  const basePath = window.location.hostname === '127.0.0.1' || window.location.hostname === '192.168.11.2' || window.location.hostname === 'localhost' 
-    ? '/data/img/' 
-    : '/js13kpwa/data/img/';
+  // const basePath = window.location.hostname === '127.0.0.1' || window.location.hostname === '192.168.11.2' || window.location.hostname === 'localhost' 
+  //   ? '/data/img/' 
+  //   : '/js13kpwa/data/img/';
+
+  const basePath = '/data/img/';
 
   const notifImg = `${basePath}${games[randomItem].slug}.jpg`;
   const options = {
