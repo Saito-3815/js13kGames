@@ -1,3 +1,5 @@
+importScripts("https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.sw.js");
+
 self.importScripts("data/games.js");
 
 // const basePath = self.location.hostname === '127.0.0.1' || self.location.hostname === '192.168.11.2' || self.location.hostname === 'localhost' 
@@ -6,7 +8,7 @@ self.importScripts("data/games.js");
 
 const basePath = "/";
 
-const cacheName = "js13kPWA-v32";
+const cacheName = "js13kPWA-v33";
 const appShellFiles = [
   `${basePath}`,
   `${basePath}index.html`,
@@ -84,13 +86,13 @@ self.addEventListener("fetch", (e) => {
   );
 });
 
-self.addEventListener("push", function (event) {
-  // プッシュメッセージの内容を取得
-  const message = event.data.json();
+// self.addEventListener("push", function (event) {
+//   // プッシュメッセージの内容を取得
+//   const message = event.data.json();
   
-  // コンソールにログを出力
-  console.log("Push event received:", message);
+//   // コンソールにログを出力
+//   console.log("Push event received:", message);
   
-  // 通知を表示
-  self.registration.showNotification(message.title, { body: message.text });
-});
+//   // 通知を表示
+//   self.registration.showNotification(message.title, { body: message.text });
+// });
