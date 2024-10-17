@@ -8,7 +8,7 @@ self.importScripts("data/games.js");
 
 const basePath = "/";
 
-const cacheName = "js13kPWA-v35";
+const cacheName = "js13kPWA-v36";
 const appShellFiles = [
   `${basePath}`,
   `${basePath}index.html`,
@@ -86,13 +86,13 @@ self.addEventListener("fetch", (e) => {
   );
 });
 
-// self.addEventListener("push", function (event) {
-//   // プッシュメッセージの内容を取得
-//   const message = event.data.json();
+self.addEventListener("push", function (event) {
+  // プッシュメッセージの内容を取得
+  const message = event.data.json();
   
-//   // コンソールにログを出力
-//   console.log("Push event received:", message);
+  // コンソールにログを出力
+  console.log("Push event received:", message);
   
-//   // 通知を表示
-//   self.registration.showNotification(message.title, { body: message.text });
-// });
+  // 通知を表示
+  self.registration.showNotification(message.title, { body: message.text });
+});
