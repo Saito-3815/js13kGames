@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to Our PWA</title>
+    <link rel="manifest" href="js13kpwa.webmanifest.onb" />
+    <script
+      src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
+      defer
+    ></script>
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(async function (OneSignal) {
+        await OneSignal.init({
+          appId: "479d82a4-666e-4214-869a-de23afe84178",
+          safari_web_id:
+            "web.onesignal.auto.613528e9-2930-4b07-a098-5a9518822d98",
+          notifyButton: {
+            enable: true,
+          },
+        });
+        debug: true;
+      });
+    </script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+      }
+      .onboarding-container {
+        text-align: center;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="onboarding-container">
+      <h1>Welcome to Our PWA!</h1>
+      <p>
+        This is your new alternative top screen with push notifications enabled.
+      </p>
+      <button id="enable-notifications">Enable Push Notifications</button>
+    </div>
+    <script src="onboarding.js"></script>
+    <script>
+      // PWAのインストールを促すコード（必要に応じて）
+      let deferredPrompt;
+      window.addEventListener("beforeinstallprompt", (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        // インストールを促すUIを表示
+      });
+
+      // プッシュ通知を有効にするボタンのイベントリスナー
+      document
+        .getElementById("enable-notifications")
+        .addEventListener("click", () => {
+          OneSignal.push(function () {
+            OneSignal.showNativePrompt();
+          });
+        });
+    </script>
+  </body>
+</html>
