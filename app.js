@@ -28,7 +28,8 @@ if ("serviceWorker" in navigator) {
   //   ? '/sw.js' 
   //   : '/js13kpwa/sw.js';
 
-  const swPath = '/sw.js';
+  // const swPath = '/sw.js';
+  const swPath = "/OneSignalSDKWorker.js";
 
   navigator.serviceWorker.register(swPath).then((registration) => {
     console.log("Service Worker registered with scope:", registration.scope);
