@@ -23,7 +23,19 @@ for (let i = 0; i < games.length; i++) {
 document.getElementById("content").innerHTML = content;
 
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("/sw.js");
+  // github pagesデプロイ時はsw.jsのパスを修正
+  // const swPath = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' 
+  //   ? '/sw.js' 
+  //   : '/js13kpwa/sw.js';
+
+  // const swPath = '/sw.js';
+  const swPath = "/OneSignalSDKWorker.js";
+
+  navigator.serviceWorker.register(swPath).then((registration) => {
+    console.log("Service Worker registered with scope:", registration.scope);
+  }).catch((error) => {
+    console.error("Service Worker registration failed:", error);
+  });
 }
 
 // クリックイベントが発生すると、ーザーに通知の許可を求める
@@ -32,7 +44,10 @@ const button = document.getElementById("notifications");
 button.addEventListener("click", () => {
   Notification.requestPermission().then((result) => {
     if (result === "granted") {
+      console.log("Notification permission granted");
       randomNotification();
+    } else {
+      console.log("Notification permission denied");
     }
   });
 });
@@ -42,11 +57,20 @@ function randomNotification() {
   const randomItem = Math.floor(Math.random() * games.length);
   const notifTitle = games[randomItem].name;
   const notifBody = `Created by ${games[randomItem].author}.`;
-  const notifImg = `data/img/${games[randomItem].slug}.jpg`;
+
+  // 環境に応じてベースパスを設定
+  // const basePath = window.location.hostname === '127.0.0.1' || window.location.hostname === '192.168.11.2' || window.location.hostname === 'localhost' 
+  //   ? '/data/img/' 
+  //   : '/js13kpwa/data/img/';
+
+  const basePath = '/data/img/';
+
+  const notifImg = `${basePath}${games[randomItem].slug}.jpg`;
   const options = {
     body: notifBody,
     icon: notifImg,
   };
+  console.log(`Creating notification: ${notifTitle}, ${notifBody}, ${notifImg}`);
   new Notification(notifTitle, options);
   setTimeout(randomNotification, 30000);
 }
