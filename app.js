@@ -1,3 +1,16 @@
+// if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+//   window.location.href = '/onboarding.html';
+// }
+
+// document.addEventListener('DOMContentLoaded', function() {
+//   if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+//     // PWAとして起動された場合（スタンドアローンモード）
+//     if (window.location.pathname !== '/onboarding.html') {
+//       window.location.href = '/onboarding.html';
+//     }
+//   }
+// });
+
 const template = `<article>
   <img src='data/img/placeholder.png' data-src='data/img/SLUG.jpg' alt='NAME'>
   <h3>#POS. NAME</h3>
