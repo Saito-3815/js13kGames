@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Welcome to Our PWA</title>
-    <link rel="manifest" href="js13kpwa.webmanifest.onb" />
+    <link rel="manifest" href="js13kpwa.onbording.webmanifest" />
     <script
       src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
       defer
@@ -21,6 +21,18 @@
           },
         });
         debug: true;
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", (event) => {
+        console.log("Current page:", window.location.href);
+        if (window.location.href.includes("onboarding.html")) {
+          console.log("onboarding.html is loaded");
+        } else {
+          console.log("onboarding.html is not loaded");
+          // 手動で onboarding.html に遷移
+          // window.location.href = '/onboarding.html';
+        }
       });
     </script>
     <style>
