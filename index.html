@@ -13,24 +13,40 @@
     <meta property="og:image" content="icons/icon-512.png" />
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="manifest" href="js13kpwa.webmanifest" />
+    <link rel="manifest" href="js13kpwa.onbording.webmanifest" />
     <script src="data/games.js" defer></script>
     <script src="app.js" defer></script>
     <!-- OneSignal用のコードを追加 -->
-    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-		<script>
-			window.OneSignalDeferred = window.OneSignalDeferred || [];
-			OneSignalDeferred.push(async function(OneSignal) {
-				await OneSignal.init({
-					appId: "479d82a4-666e-4214-869a-de23afe84178",
-					safari_web_id: "web.onesignal.auto.613528e9-2930-4b07-a098-5a9518822d98",
-					notifyButton: {
-						enable: true,
-					},
-				});
-        debug: true
-			});
-		</script>
+    <script
+      src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
+      defer
+    ></script>
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(async function (OneSignal) {
+        await OneSignal.init({
+          appId: "479d82a4-666e-4214-869a-de23afe84178",
+          safari_web_id:
+            "web.onesignal.auto.613528e9-2930-4b07-a098-5a9518822d98",
+          notifyButton: {
+            enable: true,
+          },
+        });
+        debug: true;
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", (event) => {
+        console.log("Current page:", window.location.href);
+        if (window.location.href.includes("onboarding.html")) {
+          console.log("onboarding.html is loaded");
+        } else {
+          console.log("onboarding.html is not loaded");
+          // 手動で onboarding.html に遷移
+          // window.location.href = '/onboarding.html';
+        }
+      });
+    </script>
   </head>
   <body>
     <header>
