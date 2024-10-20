@@ -2,14 +2,23 @@
 //   window.location.href = '/onboarding.html';
 // }
 
-// document.addEventListener('DOMContentLoaded', function() {
-//   if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
-//     // PWAとして起動された場合（スタンドアローンモード）
-//     if (window.location.pathname !== '/onboarding.html') {
-//       window.location.href = '/onboarding.html';
-//     }
-//   }
-// });
+// pc環境では、インストール時にindex.htmlがエントリーポイントとして表示されるのでリダイレクト処理を追加
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('DOMContentLoaded event fired');
+  console.log('display-mode standalone:', window.matchMedia('(display-mode: standalone)').matches);
+  console.log('navigator.standalone:', window.navigator.standalone);
+
+  if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+    // PWAとして起動された場合（スタンドアローンモード）
+    console.log('PWAとして起動されています');
+    if (window.location.pathname !== '/onboarding.html') {
+      console.log('onboarding.htmlにリダイレクトします');
+      window.location.href = '/onboarding.html';
+    }
+  } else {
+    console.log('通常のブラウザで表示されています');
+  }
+});
 
 const template = `<article>
   <img src='data/img/placeholder.png' data-src='data/img/SLUG.jpg' alt='NAME'>
